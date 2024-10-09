@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 class EditScreen extends StatefulWidget {
   final Transactions statement;
 
-  EditScreen({super.key, required this.statement});
+  const EditScreen({super.key, required this.statement});
 
   @override
   State<EditScreen> createState() => _EditScreenState();

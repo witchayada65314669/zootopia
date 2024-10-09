@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
- 
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
- 
+
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
- 
+
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
@@ -52,15 +52,64 @@ class _HomeScreenState extends State<HomeScreen> {
                     margin:
                         const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
                     child: ListTile(
-                      title: Text(statement.title),
-                      subtitle: Column( // ใช้ Column เพื่อแสดง health เหนือวันที่
+                      title: Text(
+                        statement.title,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      subtitle: Column(
+                        // ใช้ Column เพื่อแสดง health เหนือวันที่
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('species: ${statement.species}'),
-                          Text('age: ${statement.age}'),
-                          Text('habitat: ${statement.habitat}'),
-                          Text('health: ${statement.health}'), // แสดงข้อมูลสุขภาพ
-                          Text(DateFormat('dd MMM yyyy hh:mm:ss').format(statement.date)), // แสดงวันที่
+                          Text.rich(
+                            TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: 'species: ',
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                                TextSpan(text: '${statement.species}'),
+                              ],
+                            ),
+                          ),
+                          Text.rich(
+                            TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: 'age: ',
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                                TextSpan(text: '${statement.age}'),
+                              ],
+                            ),
+                          ),
+                          Text.rich(
+                            TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: 'habitat: ',
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                                TextSpan(text: '${statement.habitat}'),
+                              ],
+                            ),
+                          ),
+                          Text.rich(
+                            TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: 'health: ',
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                                TextSpan(text: '${statement.health}'),
+                              ],
+                            ),
+                          ),
+                          Text(
+                            DateFormat('dd MMM yyyy hh:mm:ss')
+                                .format(statement.date),
+                          ), // แสดงวันที่
                         ],
                       ),
                       leading: CircleAvatar(
@@ -94,7 +143,6 @@ class _HomeScreenState extends State<HomeScreen> {
               );
             }
           },
-        )
-        );
+        ));
   }
 }
