@@ -45,18 +45,31 @@ class _HomeScreenState extends State<HomeScreen> {
                 itemCount: provider.transactions.length,
                 itemBuilder: (context, index) {
                   var statement = provider.transactions[index];
+                  String species = statement.species;
+                  String animalEmoji = provider.getAnimalEmoji(species);
                   return Card(
                     elevation: 5,
                     margin:
                         const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
                     child: ListTile(
                       title: Text(statement.title),
-                      subtitle: Text(DateFormat('dd MMM yyyy hh:mm:ss')
-                          .format(statement.date)),
+                      subtitle: Column( // ใช้ Column เพื่อแสดง health เหนือวันที่
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('species: ${statement.species}'),
+                          Text('age: ${statement.age}'),
+                          Text('habitat: ${statement.habitat}'),
+                          Text('health: ${statement.health}'), // แสดงข้อมูลสุขภาพ
+                          Text(DateFormat('dd MMM yyyy hh:mm:ss').format(statement.date)), // แสดงวันที่
+                        ],
+                      ),
                       leading: CircleAvatar(
                         radius: 30,
                         child: FittedBox(
-                          child: Text('${statement.amount}'),
+                          child: Text(
+                            animalEmoji,
+                            style: TextStyle(fontSize: 24),
+                          ),
                         ),
                       ),
                       trailing: IconButton(
@@ -82,7 +95,6 @@ class _HomeScreenState extends State<HomeScreen> {
             }
           },
         )
-        // This trailing comma makes auto-formatting nicer for build methods.
         );
   }
 }

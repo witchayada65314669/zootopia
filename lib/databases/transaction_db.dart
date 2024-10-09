@@ -25,28 +25,37 @@ class TransactionDB{
 
     var keyID  = store.add(db, {
       "title": statement.title,
-      "amount": statement.amount,
-      "date": statement.date.toIso8601String()
+      "species": statement.species,
+      "age": statement.age,
+      "health": statement.health,
+      "habitat": statement.habitat,
+      "date": statement.date.toIso8601String(),
     });
     db.close();
     return keyID;
   }
 
-  Future<List<Transactions>> loadAllData()async {
-    var db = await openDatabase();
-    var store = intMapStoreFactory.store('expense');
-    var snapshot = await store.find(db, finder: Finder(sortOrders: [SortOrder(Field.key, false)]));
-    List<Transactions> transactions = [];
-    for (var record in snapshot) {
-      transactions.add(Transactions(
-        keyID: record.key,
-        title: record['title'].toString(),
-        amount: double.parse(record['amount'].toString()),
-        date: DateTime.parse(record['date'].toString())
-      ));
-    }
-    return transactions;
+  Future<List<Transactions>> loadAllData() async {
+  var db = await openDatabase();
+  var store = intMapStoreFactory.store('expense');
+  var snapshot = await store.find(db, finder: Finder(sortOrders: [SortOrder(Field.key, false)]));
+  List<Transactions> transactions = [];
+  
+  for (var record in snapshot) {
+    transactions.add(Transactions(
+      keyID: record.key,
+      title: record['title'].toString(),
+      species: record['species'].toString(),
+      health: record['health'].toString(),
+      habitat: record['habitat'].toString(),
+      age: record['age'] != null ? int.tryParse(record['age'].toString()) ?? 0 : 0, // ตรวจสอบค่า age
+      date: DateTime.parse(record['date'].toString()),
+    ));
   }
+  
+  return transactions;
+}
+
   deleteDatabase(int? index) async{
     var db = await openDatabase();
     var store = intMapStoreFactory.store('expense');
@@ -60,8 +69,11 @@ class TransactionDB{
     var filter = Finder(filter: Filter.equals(Field.key, statement.keyID));
     var result = store.update(db, finder: filter, {
       "title" : statement.title,
-      "amount" : statement.amount,
-      "date" : statement.date.toIso8601String()
+      "species": statement.species,
+      "age" : statement.age,
+      "health": statement.health,
+      "habitat": statement.habitat,
+      "date" : statement.date.toIso8601String(),
     });
     db.close();
     print('update result: $result');
