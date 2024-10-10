@@ -56,6 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         statement.title,
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
+                          color: Colors.cyan[900],
                         ),
                       ),
                       subtitle: Column(
@@ -67,9 +68,10 @@ class _HomeScreenState extends State<HomeScreen> {
                               children: [
                                 TextSpan(
                                   text: 'species: ',
-                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                  style: TextStyle(fontWeight: FontWeight.bold,
+                                  color: Colors.cyan[900]),
                                 ),
-                                TextSpan(text: '${statement.species}'),
+                                TextSpan(text: statement.species),
                               ],
                             ),
                           ),
@@ -78,7 +80,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               children: [
                                 TextSpan(
                                   text: 'age: ',
-                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                  style: TextStyle(fontWeight: FontWeight.bold,
+                                  color: Colors.cyan[900]),
                                 ),
                                 TextSpan(text: '${statement.age}'),
                               ],
@@ -89,9 +92,10 @@ class _HomeScreenState extends State<HomeScreen> {
                               children: [
                                 TextSpan(
                                   text: 'habitat: ',
-                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                  style: TextStyle(fontWeight: FontWeight.bold,
+                                  color: Colors.cyan[900]),
                                 ),
-                                TextSpan(text: '${statement.habitat}'),
+                                TextSpan(text: statement.habitat),
                               ],
                             ),
                           ),
@@ -100,9 +104,10 @@ class _HomeScreenState extends State<HomeScreen> {
                               children: [
                                 TextSpan(
                                   text: 'health: ',
-                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                  style: TextStyle(fontWeight: FontWeight.bold,
+                                  color: Colors.cyan[900]),
                                 ),
-                                TextSpan(text: '${statement.health}'),
+                                TextSpan(text: statement.health),
                               ],
                             ),
                           ),
