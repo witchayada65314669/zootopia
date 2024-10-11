@@ -60,7 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ),
                       subtitle: Column(
-                        // ใช้ Column เพื่อแสดง health เหนือวันที่
+                        
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text.rich(
